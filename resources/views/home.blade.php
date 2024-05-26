@@ -1,4 +1,4 @@
 <x-layout>
     <x-slot:heading>Home</x-slot:heading>
-    <h2>Hello World!</h2>
+    <h2>{{ $greeting }} World!</h2>
 </x-layout>
