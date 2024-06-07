@@ -72,10 +72,9 @@
           <!-- Mobile menu, show/hide based on menu state. -->
           <div class="md:hidden" id="mobile-menu">
             <div class="space-y-1 px-2 pb-3 pt-2 sm:px-3">
-              <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-              <a href="/" class="bg-gray-900 text-white block rounded-md px-3 py-2 text-base font-medium" aria-current="page">Home</a>
-              <a href="/jobs" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Jobs</a>
-              <a href="/contact" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Contact</a>
+              <x-nav-link href="/" :active="request()->is('/')" :mobile=true>Home</x-nav-link>
+              <x-nav-link href="/jobs" :active="request()->is('jobs')" :mobile=true>Jobs</x-nav-link>
+              <x-nav-link href="/contact" :active="request()->is('contact')" :mobile=true>Contact</x-nav-link>
             <div class="border-t border-gray-700 pb-3 pt-4">
               <div class="flex items-center px-5">
                 <div class="flex-shrink-0">
