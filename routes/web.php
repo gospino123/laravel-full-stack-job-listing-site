@@ -5,13 +5,10 @@ use Illuminate\Support\Facades\Route;
 use App\Models\Job;
 
 Route::get('/', function () {
-    $jobs = Job::all();
-
-    /* return view('home', [
+    return view('home', [
         'greeting' => 'HI',
-    ]);*/
-
-    dd($jobs[1]->title);
+        'jobs' => Job::all()
+    ]);
 });
 
 Route::get('/jobs', function () {
