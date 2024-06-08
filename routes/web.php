@@ -11,7 +11,7 @@ Route::get('/', function () {
         'greeting' => 'HI',
     ]);*/
 
-    dd($jobs);
+    dd($jobs[1]->title);
 });
 
 Route::get('/jobs', function () {
