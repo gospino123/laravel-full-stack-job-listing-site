@@ -3,12 +3,20 @@
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Route;
 use App\Models\Job;
+use App\Models\Action;
 
 Route::get('/', function () {
     return view('home', [
         'greeting' => 'HI',
         'jobs' => Job::all()
     ]);
+});
+
+Route::get('/actions', function () {
+    return view('actions', 
+        [ 'actions' => Action::all()
+        ]    
+    );
 });
 
 Route::get('/jobs', function () {
@@ -20,7 +28,9 @@ Route::get('/jobs', function () {
 Route::get('/jobs/{id}', function ($id) {
     
     $job = Job::find($id);
-
+    if (! $job) {
+        abort(404);
+    }
     return view('job', ['job' => $job]);
 });
 

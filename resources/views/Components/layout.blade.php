@@ -24,6 +24,7 @@
                   <div class="ml-10 flex items-baseline space-x-4">
                     <x-nav-link href="/" :active="request()->is('/')">Home</x-nav-link>
                     <x-nav-link href="/jobs" :active="request()->is('jobs')">Jobs</x-nav-link>
+                    <x-nav-link href="/actions" :active="request()->is('actions')">Actions</x-nav-link>
                     <x-nav-link href="/contact" :active="request()->is('contact')">Contact</x-nav-link>
                   </div>
                 </div>
@@ -74,6 +75,7 @@
             <div class="space-y-1 px-2 pb-3 pt-2 sm:px-3">
               <x-nav-link href="/" :active="request()->is('/')" :mobile=true>Home</x-nav-link>
               <x-nav-link href="/jobs" :active="request()->is('jobs')" :mobile=true>Jobs</x-nav-link>
+              <x-nav-link href="/actions" :active="request()->is('actions')" :mobile=true>Actions</x-nav-link>
               <x-nav-link href="/contact" :active="request()->is('contact')" :mobile=true>Contact</x-nav-link>
             <div class="border-t border-gray-700 pb-3 pt-4">
               <div class="flex items-center px-5">
