@@ -17,9 +17,16 @@ return new class extends Migration
             $table->string('name');
             $table->timestamps();
         });
+
         Schema::create('job_tag', function (Blueprint $table) {
+            // if sqlite -> in database: PRAGMA foreign_keys=on
+            // Remember: Press run to activate or press Command + Return/Enter
+
+            // Naming convention for table:
+                // Singular form of each table and alphabetically connect
             $table->id();
-            $table->foreignIdFor(\App\Models\Job::class, 'job_listing')->constrained()->cascadeOnDelete();
+            // Use 'job_listing' argument because we're referring to a different job than the default one
+            $table->foreignIdFor(\App\Models\Job::class, 'job_listing_id')->constrained()->cascadeOnDelete();
             $table->foreignIdFor(\App\Models\Tag::class)->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
