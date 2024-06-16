@@ -40,7 +40,14 @@ Route::get('/jobs/{id}', function ($id) {
 });
 
 Route::post('/jobs', function() {
-    dd('hello world');
+    // dd(request()->all());
+    Job::create([
+        'title' => request('title'),
+        'salary' => request('salary'),
+        'employer_id' => 1,
+    ]);
+
+    return redirect('/jobs');
 });
 
 Route::get('/contact', function () {
