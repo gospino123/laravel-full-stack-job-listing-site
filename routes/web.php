@@ -18,9 +18,14 @@ Route::get('/jobs', function () {
     // $jobs = Job::with('employer')->cursorPaginate(3);
     $jobs = Job::with('employer')->simplePaginate(3);
     
-    return view('jobs', 
+    return view('jobs.index', 
         [ 'jobs' => $jobs,
     ]);
+});
+
+// Be careful with hierarchy - wildcards (/jobs/{id}) should go towards the bottom
+Route::get('/jobs/create', function () {
+    return view('jobs.create');
 });
 
 Route::get('/jobs/{id}', function ($id) {
@@ -31,7 +36,7 @@ Route::get('/jobs/{id}', function ($id) {
         abort(404);
     }
 
-    return view('job', ['job' => $job]);
+    return view('jobs.show', ['job' => $job]);
 });
 
 Route::get('/contact', function () {
