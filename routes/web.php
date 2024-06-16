@@ -16,7 +16,7 @@ Route::get('/jobs', function () {
     
     // Use cursorPaginate for best performance but bad URL, use case could be infinite scrolling
     // $jobs = Job::with('employer')->cursorPaginate(3);
-    $jobs = Job::with('employer')->simplePaginate(3);
+    $jobs = Job::with('employer')->latest()->simplePaginate(3);
     
     return view('jobs.index', 
         [ 'jobs' => $jobs,
