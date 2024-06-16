@@ -39,6 +39,10 @@ Route::get('/jobs/{id}', function ($id) {
     return view('jobs.show', ['job' => $job]);
 });
 
+Route::post('/jobs', function() {
+    dd('hello world');
+});
+
 Route::get('/contact', function () {
     return view('contact');
 });
