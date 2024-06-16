@@ -15,7 +15,8 @@ Route::get('/jobs', function () {
     // Use eager loading 'with'
     // get() will get ALL records, so you would want to limit this
     // Lazy loading has risk of n+1 and sometimes ppl disable at start of project
-    $jobs = Job::with('employer')->get();
+    // $jobs = Job::with('employer')->get();
+    $jobs = Job::all();
     
     return view('jobs', 
         [ 'jobs' => $jobs,
