@@ -45,6 +45,7 @@ Route::post('/jobs', function() {
     request()->validate([
         'title' => ['required', 'min:3'],
         'salary' => ['required'],
+        // laravel.com/docs/validation
     ]);
 
     Job::create([
