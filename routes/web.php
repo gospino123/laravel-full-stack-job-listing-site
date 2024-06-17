@@ -19,7 +19,7 @@ Route::get('/jobs', function () {
     $jobs = Job::with('employer')->latest()->simplePaginate(3);
     
     return view('jobs.index', 
-        [ 'jobs' => $jobs,
+        [ 'jobs' => $jobs, 'hasCTA' => 'true',
     ]);
 });
 
@@ -36,7 +36,7 @@ Route::get('/jobs/{id}', function ($id) {
         abort(404);
     }
 
-    return view('jobs.show', ['job' => $job]);
+    return view('jobs.show', ['job' => $job, 'hasCTA' => true]);
 });
 
 Route::post('/jobs', function() {
@@ -47,7 +47,7 @@ Route::post('/jobs', function() {
         'employer_id' => 1,
     ]);
 
-    return redirect('/jobs');
+    return redirect('/jobs', ['hasCTA' => true]);
 });
 
 Route::get('/contact', function () {
