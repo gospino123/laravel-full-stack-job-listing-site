@@ -99,9 +99,7 @@
         <header class="bg-white shadow">
           <div class="mx-auto max-w-7xl px-5 py-6 sm:px-6 lg:px-8 sm:flex sm:justify-between">
             <h1 class="text-3xl font-bold tracking-tight text-gray-900">{{ $heading }}</h1>
-            <x-cta-link href="/jobs/create" :isCTA=true>
-              Create Job
-            </x-cta-link>
+            <x-cta-link href="/jobs/create" :isCTA="true">Create Job</x-cta-link>
           </div>
         </header>
         <main>
