@@ -73,6 +73,33 @@ Route::get('/jobs/{id}/edit', function ($id) {
     return view('jobs.edit', ['job' => $job,]);
 });
 
+// Update
+Route::patch('/jobs/{id}', function ($id) {
+    // Validate
+    // Authorize (on hold...)
+    // Update job
+    // Persist
+    // Redirect
+    
+    $job = Job::find($id);
+
+    if (! $job) {
+        abort(404);
+    }
+
+});
+
+// Destroy
+Route::delete('/jobs/{id}', function ($id) {
+    
+    $job = Job::find($id);
+
+    if (! $job) {
+        abort(404);
+    }
+
+});
+
 Route::get('/contact', function () {
     return view('contact');
 });
