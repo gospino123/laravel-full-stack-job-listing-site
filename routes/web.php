@@ -11,6 +11,7 @@ Route::get('/', function () {
     ]);
 });
 
+// Index
 Route::get('/jobs', function () {
     // Use eager loading 'with'
     
@@ -24,10 +25,12 @@ Route::get('/jobs', function () {
 });
 
 // Be careful with hierarchy - wildcards (/jobs/{id}) should go towards the bottom
+// Create
 Route::get('/jobs/create', function () {
     return view('jobs.create');
 });
 
+// Show
 Route::get('/jobs/{id}', function ($id) {
     
     $job = Job::find($id);
@@ -39,6 +42,7 @@ Route::get('/jobs/{id}', function ($id) {
     return view('jobs.show', ['job' => $job,]);
 });
 
+// Store
 Route::post('/jobs', function() {
     // dd(request()->all());
 
@@ -55,6 +59,18 @@ Route::post('/jobs', function() {
     ]);
 
     return redirect('/jobs');
+});
+
+// Edit
+Route::get('/jobs/{id}/edit', function ($id) {
+    
+    $job = Job::find($id);
+
+    if (! $job) {
+        abort(404);
+    }
+
+    return view('jobs.edit', ['job' => $job,]);
 });
 
 Route::get('/contact', function () {
