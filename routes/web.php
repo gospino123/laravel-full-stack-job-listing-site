@@ -33,11 +33,7 @@ Route::get('/jobs/create', function () {
 // Show
 Route::get('/jobs/{id}', function ($id) {
     
-    $job = Job::find($id);
-
-    if (! $job) {
-        abort(404);
-    }
+    $job = Job::findOrFail($id);
 
     return view('jobs.show', ['job' => $job,]);
 });
@@ -76,16 +72,26 @@ Route::get('/jobs/{id}/edit', function ($id) {
 // Update
 Route::patch('/jobs/{id}', function ($id) {
     // Validate
+    request()->validate([
+        'title' => ['required', 'min:3'],
+        'salary' => ['required'],
+    ]);
     // Authorize (on hold...)
     // Update job
+    $job = Job::findOrFail($id);
+    $job->title = request('title');
+    $job->salary = request('salary');
+    /*
+    OR 
+    $job->update([
+        'title' => request('title');
+        'salary' => request('salary');
+    ])
+    */
     // Persist
+    $job->save();
     // Redirect
-    
-    $job = Job::find($id);
-
-    if (! $job) {
-        abort(404);
-    }
+    return redirect('/jobs/' . $job->id);
 
 });
 
