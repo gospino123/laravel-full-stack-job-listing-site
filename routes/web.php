@@ -97,7 +97,9 @@ Route::patch('/jobs/{id}', function ($id) {
 
 // Destroy
 Route::delete('/jobs/{id}', function ($id) {
-    
+    // authorize (on hold...)
+    // delete job
+    // redirect
     $job = Job::find($id);
 
     if (! $job) {
