@@ -30,11 +30,19 @@ Route::get('/jobs/create', function () {
     return view('jobs.create');
 });
 
-// Show
-Route::get('/jobs/{id}', function ($id) {
-    
-    $job = Job::findOrFail($id);
 
+/*
+Different ways to use Laravel's convention to get the right item
+1. Match wildcard {example} with argument ( $example) - and maybe usage below in the function block
+2. Use type, like the instance of a Job noted as (Job $job)
+3. Then, you don't have to use the findOrFail part
+Route::get('posts/{post:slug}');
+Route::get('posts/{post:id}');
+Route::get('posts/{post}');
+*/
+
+// Show
+Route::get('/jobs/{job}', function (Job $job) {
     return view('jobs.show', ['job' => $job,]);
 });
 
