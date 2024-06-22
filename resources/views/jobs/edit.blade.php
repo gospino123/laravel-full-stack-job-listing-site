@@ -2,8 +2,9 @@
     <x-slot:heading>
         Edit Job: {{ $job->title }}
     </x-slot:heading>
-    <form method="POST" action="/jobs">
+    <form method="POST" action="/jobs/{{ $job->id }}">
         @csrf
+        @method('PATCH')
         
         <div class="space-y-12">
             <div class="border-b border-gray-900/10 pb-12">
@@ -44,10 +45,22 @@
             </div>
         </div>
     
-        <div class="mt-6 flex items-center justify-end gap-x-6">
-            <a href="/jobs/{{ $job->id }}" class="text-sm font-semibold leading-6 text-gray-900">Cancel</a>
-            <button type="submit" class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Update</button>
+        <div class="mt-6 flex items-center justify-between">
+            <div>
+                {{-- Add div because sometimes faulty button direct inside flex container --}}
+                {{-- Remember to associate button w id of the correct form --}}
+                <button type="submit" form="delete-job" class="rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-700">Delete</button>
+            </div>
+            <div class="flex gap-x-3">
+                <a href="/jobs/{{ $job->id }}" class="text-sm font-semibold leading-6 text-gray-900 rounded-md px-3 py-2">Cancel</a>
+                <div>
+                    <button type="submit" class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Update</button>
+                </div>
+            </div>
         </div>
     </form>
-  
+    <form method="POST" action="/jobs/{{ $job->id }}" id="delete-job" class="hidden">
+        @csrf
+        @method('DELETE')
+    </form>
 </x-layout>

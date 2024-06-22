@@ -100,12 +100,15 @@ Route::delete('/jobs/{id}', function ($id) {
     // authorize (on hold...)
     // delete job
     // redirect
-    $job = Job::find($id);
 
-    if (! $job) {
-        abort(404);
-    }
+    /*
+    $job = Job::findOrFail($id);
+    $job->delete();
+    OR
+    */
+    Job::findOrFail($id)->delete();
 
+    return redirect('/jobs');
 });
 
 Route::get('/contact', function () {
