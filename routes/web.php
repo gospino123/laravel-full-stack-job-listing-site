@@ -66,14 +66,7 @@ Route::post('/jobs', function() {
 });
 
 // Edit
-Route::get('/jobs/{id}/edit', function ($id) {
-    
-    $job = Job::find($id);
-
-    if (! $job) {
-        abort(404);
-    }
-
+Route::get('/jobs/{job}/edit', function (Job $job) {
     return view('jobs.edit', ['job' => $job,]);
 });
 
