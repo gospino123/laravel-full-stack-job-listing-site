@@ -2,8 +2,11 @@
 
 use App\Http\Controllers\JobController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RegisteredUserController;
 
 Route::view('/', 'home', ['greeting' => 'Hi hi']);
+Route::view('/contact', 'contact');
+Route::resource('jobs', JobController::class);
 
 // Route::controller(JobController::class)->group(function() {
 //     Route::get('/jobs', 'index');
@@ -15,6 +18,5 @@ Route::view('/', 'home', ['greeting' => 'Hi hi']);
 //     Route::delete('/jobs/{job}', 'destroy');
 // });
 
-Route::resource('jobs', JobController::class);
-
-Route::view('/contact', 'contact');
+// Auth
+Route::get('/register', [RegisteredUserController::class, 'create']);
