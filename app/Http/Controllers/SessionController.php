@@ -11,7 +11,10 @@ class SessionController extends Controller
         return view('auth.login');
     }
     public function store() {
-        dd(request()->all());
+        // validate form
+        // attempt to log in user
+        // regenerate session token
+        // redirect to jobs
     }
     public function destroy() {
         Auth::logout();
