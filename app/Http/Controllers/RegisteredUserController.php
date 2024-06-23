@@ -10,6 +10,9 @@ class RegisteredUserController extends Controller
         return view('auth.register');
     }
     public function store() {
-        dd(request()->all());
+        // validate
+        // create user in database
+        // log in user
+        // redirect user to dashboard/homepage
     }
 }
