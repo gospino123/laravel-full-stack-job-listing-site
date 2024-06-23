@@ -29,5 +29,6 @@ class RegisteredUserController extends Controller
         // log in user
         Auth::login($user);
         // redirect user to dashboard/homepage
+        return redirect('/jobs');
     }
 }
