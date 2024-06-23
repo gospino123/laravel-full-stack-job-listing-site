@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules\Password;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class RegisteredUserController extends Controller
 {
@@ -24,8 +25,9 @@ class RegisteredUserController extends Controller
             'password' => ['required', Password::default(), 'confirmed'],
         ]);
         // create user in database
-        User::create($validatedAttributes);
+        $user = User::create($validatedAttributes);
         // log in user
+        Auth::login($user);
         // redirect user to dashboard/homepage
     }
 }
