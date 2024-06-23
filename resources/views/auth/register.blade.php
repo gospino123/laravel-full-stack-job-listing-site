@@ -2,7 +2,7 @@
   <x-slot:heading>
       Register
   </x-slot:heading>
-  <form method="POST" action="">
+  <form method="POST" action="/register">
       @csrf
       
       <div class="space-y-12">
