@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Job;
+use Illuminate\Support\Facades\Auth;
 
 class JobController extends Controller
 {
@@ -36,6 +37,10 @@ class JobController extends Controller
         return redirect('/jobs');
     }
     public function edit(Job $job) {
+        if (Auth::guest()) {
+            return redirect('/login');
+        }
+
         return view('jobs.edit', ['job' => $job,]);
     }
     public function update(Job $job) {
