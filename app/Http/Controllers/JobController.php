@@ -41,6 +41,12 @@ class JobController extends Controller
             return redirect('/login');
         }
 
+        // is
+        // Allows you to check if two models have same ID and belong to same table or NOT
+        if ($job->employer->user->isNot(Auth::user())) {
+            abort(403);
+        }
+
         return view('jobs.edit', ['job' => $job,]);
     }
     public function update(Job $job) {
