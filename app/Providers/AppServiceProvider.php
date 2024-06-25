@@ -2,9 +2,13 @@
 
 namespace App\Providers;
 
+use App\Models\Job;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -27,5 +31,11 @@ class AppServiceProvider extends ServiceProvider
         // Paginator::defaultView('pagination::bootstrap-4');
         // Paginator::useTailwind();
         // Used if you want to change the default styles for the Paginator
+
+        // is
+        // Allows you to check if two models have same ID and belong to same table
+        Gate::define('edit-job', function(User $user, Job $job) {
+            return $job->employer->user->is($user);
+        });
     }
 }

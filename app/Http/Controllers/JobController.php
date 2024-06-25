@@ -39,12 +39,6 @@ class JobController extends Controller
         return redirect('/jobs');
     }
     public function edit(Job $job) {
-        // is
-        // Allows you to check if two models have same ID and belong to same table
-        Gate::define('edit-job', function(User $user, Job $job) {
-            return $job->employer->user->is($user);
-        });
-
         if (Auth::guest()) {
             return redirect('/login');
         }
