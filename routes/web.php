@@ -21,9 +21,13 @@ Route::controller(JobController::class)->group(function() {
     ->middleware('auth')
     ->can('edit-job', 'job');
 
-  Route::patch('/jobs/{job}', 'update');
+  Route::patch('/jobs/{job}', 'update')
+    ->middleware('auth')
+    ->can('edit-job', 'job');
 
-  Route::delete('/jobs/{job}', 'destroy');
+  Route::delete('/jobs/{job}', 'destroy')
+    ->middleware('auth')
+    ->can('edit-job', 'job');
 });
 
 // Auth
