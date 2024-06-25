@@ -7,7 +7,7 @@ use App\Http\Controllers\SessionController;
 
 Route::view('/', 'home', ['greeting' => 'Hi hi']);
 Route::view('/contact', 'contact');
-Route::resource('jobs', JobController::class);
+Route::resource('jobs', JobController::class)->middleware('auth');
 
 // Route::controller(JobController::class)->group(function() {
 //     Route::get('/jobs', 'index');
@@ -23,6 +23,6 @@ Route::resource('jobs', JobController::class);
 Route::get('/register', [RegisteredUserController::class, 'create']);
 Route::post('/register', [RegisteredUserController::class, 'store']);
 
-Route::get('/login', [SessionController::class, 'create']);
+Route::get('/login', [SessionController::class, 'create'])->name('login');
 Route::post('/login', [SessionController::class, 'store']);
 Route::post('/logout', [SessionController::class, 'destroy']);
