@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Job;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class JobController extends Controller
 {
@@ -37,15 +39,18 @@ class JobController extends Controller
         return redirect('/jobs');
     }
     public function edit(Job $job) {
+        // is
+        // Allows you to check if two models have same ID and belong to same table
+        Gate::define('edit-job', function(User $user, Job $job) {
+            return $job->employer->user->is($user);
+        });
+
         if (Auth::guest()) {
             return redirect('/login');
         }
 
-        // is
-        // Allows you to check if two models have same ID and belong to same table or NOT
-        if ($job->employer->user->isNot(Auth::user())) {
-            abort(403);
-        }
+        Gate::authorize('edit-job', $job);
+        // versus if Gate::denies('edit-job', $job) {code block for sp. action}
 
         return view('jobs.edit', ['job' => $job,]);
     }
