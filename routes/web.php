@@ -7,7 +7,8 @@ use App\Http\Controllers\SessionController;
 
 Route::view('/', 'home', ['greeting' => 'Hi hi']);
 Route::view('/contact', 'contact');
-Route::resource('jobs', JobController::class)->middleware('auth');
+Route::resource('jobs', JobController::class)->only(['index', 'show']);
+Route::resource('jobs', JobController::class)->except(['index', 'show'])->middleware('auth');
 
 // Route::controller(JobController::class)->group(function() {
 //     Route::get('/jobs', 'index');
