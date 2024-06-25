@@ -109,6 +109,7 @@ return [
     */
 
     // .env has email address but default is set as second arg
+    // Using mailtrap.io for testing
     'from' => [
         'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
         'name' => env('MAIL_FROM_NAME', 'Example'),
