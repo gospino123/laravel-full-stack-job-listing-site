@@ -7,7 +7,12 @@ use App\Http\Controllers\SessionController;
 
 // Create dummy route for testing
 Route::get('test', function() {
-  return new \App\Mail\JobPosted;
+  \Illuminate\Support\Facades\Mail::to('fake-email@faker.com')->send(
+    new App\Mail\JobPosted()
+  );
+  return 'Done';
+  // Still local w no email provider, smtp server
+  // storage/logs/laravel.log
 });
 
 Route::view('/', 'home', ['greeting' => 'Hi hi']);
