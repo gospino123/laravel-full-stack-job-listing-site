@@ -11,10 +11,18 @@ Route::view('/contact', 'contact');
 Route::controller(JobController::class)->group(function() {
   Route::get('/jobs', 'index');
   Route::get('/jobs/create', 'create');
-  Route::post('/jobs', 'store')->middleware('auth');
+  
+  Route::post('/jobs', 'store')
+    ->middleware('auth');
+
   Route::get('/jobs/{job}', 'show');
-  Route::get('/jobs/{job}/edit', 'edit')->middleware('auth', 'can:edit-job,job');
+  
+  Route::get('/jobs/{job}/edit', 'edit')
+    ->middleware('auth')
+    ->can('edit-job', 'job');
+
   Route::patch('/jobs/{job}', 'update');
+
   Route::delete('/jobs/{job}', 'destroy');
 });
 
