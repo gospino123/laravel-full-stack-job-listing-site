@@ -39,10 +39,6 @@ class JobController extends Controller
         return redirect('/jobs');
     }
     public function edit(Job $job) {
-        if (Auth::guest()) {
-            return redirect('/login');
-        }
-
         Gate::authorize('edit-job', $job);
         // versus if Gate::denies('edit-job', $job) {code block for sp. action}
 

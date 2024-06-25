@@ -35,6 +35,9 @@ class AppServiceProvider extends ServiceProvider
         // is
         // Allows you to check if two models have same ID and belong to same table
         Gate::define('edit-job', function(User $user, Job $job) {
+            // Gate ALWAYS looks for currently authenticated user
+            // Workarounds:
+            // User $user = null or ?User $user 
             return $job->employer->user->is($user);
         });
     }
