@@ -19,15 +19,16 @@ Route::controller(JobController::class)->group(function() {
   
   Route::get('/jobs/{job}/edit', 'edit')
     ->middleware('auth')
-    ->can('edit-job', 'job');
+    ->can('edit', 'job');
+    // Using policy ->can('method-name', 'corresponding-model');
 
   Route::patch('/jobs/{job}', 'update')
     ->middleware('auth')
-    ->can('edit-job', 'job');
+    ->can('edit', 'job');
 
   Route::delete('/jobs/{job}', 'destroy')
     ->middleware('auth')
-    ->can('edit-job', 'job');
+    ->can('edit', 'job');
 });
 
 // Auth
@@ -37,3 +38,13 @@ Route::post('/register', [RegisteredUserController::class, 'store']);
 Route::get('/login', [SessionController::class, 'create'])->name('login');
 Route::post('/login', [SessionController::class, 'store']);
 Route::post('/logout', [SessionController::class, 'destroy']);
+
+// Notes:
+/*
+Decision Paralysis
+ -Authorization in Routes or Controller?
+ -Gate facade or Policy?
+It always depends
+ -Simple? Gate
+ -Complex? Policy
+*/
