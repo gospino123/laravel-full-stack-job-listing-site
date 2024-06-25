@@ -5,6 +5,14 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisteredUserController;
 use App\Http\Controllers\SessionController;
 
+// Create dummy route for testing
+Route::get('test', function() {
+  dispatch(function() {
+    logger('hello from the queue');
+  });
+  return 'Done';
+});
+
 Route::view('/', 'home', ['greeting' => 'Hi hi']);
 Route::view('/contact', 'contact');
 

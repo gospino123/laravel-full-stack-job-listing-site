@@ -114,3 +114,6 @@ return [
     ],
 
 ];
+
+// You will need tools for workers for queue in production
+// Ex. service worker
